@@ -1,43 +1,54 @@
 package com.bridgelabz;
 
-import java.util.Objects;
+import java.util.Scanner;
 
 public class LineComparison {
-	static int x1;
-	static int y1;
-
-    static int x2;
-    static int y2;
-
+	
+	static void compareLength(Integer lengthOfFirstLine, Integer lengthOfSecondLine) {
+		System.out.println("Comparing the lengths..........");
+		if(lengthOfFirstLine.equals(lengthOfSecondLine)) {
+			System.out.println("Both Length are same.");
+		}else {
+			System.out.println("Both length are not same.");
+			if (lengthOfFirstLine.compareTo(lengthOfSecondLine) > 0) {
+				System.out.println("Length 1 is grater than Length 2.");
+			} else {
+				System.out.println("Length 2 is greater than Length 1.");
+			}
+		}
+	}
+	static int calculateLength(int x1, int y1, int x2, int y2) {
+		int length = (int) Math.sqrt( (Math.pow((x1-x2),2) + Math.pow((y1-y2),2)) );
+		return length;
+	}
 
 	public static void main(String[] args) {
 		
-		System.out.println("Welcome to line comparision");
-        x1 = 2;
-        y1 = -5;
-
-        x2 = 3;
-        y2 = 6;
-
-        int length1 = (int) Math.sqrt( (Math.pow((x1-x2),2) + Math.pow((y1-y2),2)) );
-        System.out.println("Length of the line : " + length1);
-        x1 = 3;
-		y1 = 6;
+		Scanner sc = new Scanner(System.in);
 		
-		x2 = 2;
-		y2 = -5;
+		System.out.println("Enter the starting point of the 1st line (x1, y1): ");
+		int x1 = sc.nextInt();
+		int y1 = sc.nextInt();	
+		System.out.println("Enter the starting point of the 1st line (x2, y2): ");
+		int x2 = sc.nextInt();
+		int y2 = sc.nextInt();
 		
-		int length2 = (int) Math.sqrt( (Math.pow((x1-x2),2) + Math.pow((y1-y2),2)) );
-		System.out.println("Length of the line : " + length2);
+		int lengthOfFirstLine = calculateLength(x1, y1, x2, y2);
+		System.out.println("Length of 1st line = " + lengthOfFirstLine +"\n");
+		System.out.println("Enter the starting point of the 2nd line (x3, y3): ");
+		int x3 = sc.nextInt();
+		int y3 = sc.nextInt();	
+		System.out.println("Enter the starting point of the 2nd line (x4, y4): ");
+		int x4 = sc.nextInt();
+		int y4 = sc.nextInt();
 		
-		if(length1 > length2) {
-			System.out.println("Length 1 is grater than Length 2");
-		}else if(length1 < length2) {
-			System.out.println("Length 2 is greater than Length 1");
-		}else
-			System.out.println("Both Length are same");
-
-
+		int lengthOfSecondLine = calculateLength(x3, y3, x4, y4);
+		System.out.println("Length of 1st line = " + lengthOfSecondLine);
+		
+		System.out.println("\n\n");
+		compareLength(lengthOfFirstLine, lengthOfSecondLine);
+		
+		sc.close();
 	}
 
 }
